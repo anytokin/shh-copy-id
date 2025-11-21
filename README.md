@@ -1,0 +1,1 @@
+Dead simple version of shh-copy-id written in Python
