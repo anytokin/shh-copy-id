@@ -1,0 +1,60 @@
+name: Build Windows EXE with uv
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: |
+            pyproject.toml
+            uv.lock
+
+      - name: Install Python (version from project)
+        run: uv python install
+
+      - name: Sync dependencies (incl. dev)
+        run: uv sync --dev
+
+      - name: Build EXE with PyInstaller
+        run: uv run pyinstaller --onefile --name ssh-copy-id src/main.py
+
+      - name: Upload EXE artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ssh-copy-id-windows-${{ github.ref_name }}
+          path: dist/ssh-copy-id.exe
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ssh-copy-id-windows-${{ github.ref_name }}
+          path: dist
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          files: dist/ssh-copy-id.exe
