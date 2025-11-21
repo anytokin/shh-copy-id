@@ -5,6 +5,8 @@ on:
     tags:
       - "v*"
 
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: windows-latest
@@ -21,7 +23,7 @@ jobs:
             pyproject.toml
             uv.lock
 
-      - name: Install Python (version from project)
+      - name: Install Python
         run: uv python install
 
       - name: Sync dependencies (incl. dev)
