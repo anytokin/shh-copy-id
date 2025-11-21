@@ -27,7 +27,7 @@ jobs:
         run: uv python install
 
       - name: Sync dependencies (incl. dev)
-        run: uv sync --dev
+        run: uv sync
 
       - name: Build EXE with PyInstaller
         run: uv run pyinstaller --onefile --name ssh-copy-id src/main.py

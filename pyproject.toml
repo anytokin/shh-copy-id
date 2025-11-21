@@ -4,17 +4,16 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ssh-copy-id"
-version = "0.1.0"
+version = "0.1.5"
 description = "ssh-copy-id clone implemented in Python, works on Windows"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [
     { name = "Dawid Konrad Kohnke", email = "dawid.kohnke.cad@gmail.com" }
 ]
-
 dependencies = []
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = ["pyinstaller"]
 
 [tool.hatch.build.targets.wheel]
