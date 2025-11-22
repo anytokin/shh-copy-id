@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ssh-copy-id"
-version = "0.1.6"
-description = "Alternative for Linux's ssh-copy-id
+version = "0.1.7"
+description = "Alternative for Linux's ssh-copy-id"
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [
