@@ -29,7 +29,7 @@ Alternatively :
     ssh-copy-id user@host 
     ```
   
-- Use with flags user@host
+- Use with flags
     ```bash
     ssh-copy-id user@host -p ssh_port -i path_to_public_key_file
     ```
