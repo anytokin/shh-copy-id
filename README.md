@@ -19,9 +19,9 @@ ssh-copy-id
 Script will prompt for user and hostname 
 
 Alternatively :
-- provide just user
+- provide just host
     ```bash
-    ssh-copy-id user
+    ssh-copy-id host
     ```
 
 - provide user@host
