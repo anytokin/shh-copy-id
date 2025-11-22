@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "ssh-copy-id"
 version = "0.1.6"
-description = "ssh-copy-id clone implemented in Python, works on Windows"
+description = "Alternative for Linux's ssh-copy-id
 readme = "README.md"
 requires-python = ">=3.8"
 authors = [

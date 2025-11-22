@@ -63,7 +63,7 @@ def ssh_copy_id(user_at_host: str, port: int, pubkey_path: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Cross-platform ssh-copy-id")
+    parser = argparse.ArgumentParser(description="Alternative for Linux's ssh-copy-id")
     parser.add_argument(
         "user_at_host",
         nargs="?",
