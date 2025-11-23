@@ -36,6 +36,7 @@ def ssh_copy_id(**kwargs) -> None:
     port: str = str(kwargs.get("port"))
     debug: bool = kwargs.get("x")
     dry_run: bool = kwargs.get("n")
+    target_path: Path = Path(kwargs.get("t"))
 
     if not pubkey_path.exists():
         print(f"[!] Public key not found: {pubkey_path}")
@@ -50,8 +51,8 @@ def ssh_copy_id(**kwargs) -> None:
     remote_cmd = (
         "mkdir -p ~/.ssh && "
         "chmod 700 ~/.ssh && "
-        f"echo '{key}' >> ~/.ssh/authorized_keys && "
-        "chmod 600 ~/.ssh/authorized_keys"
+        f"echo '{key}' >> {target_path} && "
+        f"chmod 600 {target_path}"
     )
 
     print(f"[+] Copying key to {user_at_host} ...")
@@ -104,6 +105,13 @@ def main():
         help="""Do a dry-run.  Instead of installing keys on the remote
                system simply prints the key(s) that would have been
                installed""",
+    )
+    parser.add_argument(
+        "-t",
+        type=str,
+        default="~/.ssh/authorized_keys",
+        help="""The path on the target system where the keys should be
+               added (defaults to ".ssh/authorized_keys")"""
     )
 
     args = parser.parse_args()
