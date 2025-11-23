@@ -35,12 +35,17 @@ def ssh_copy_id(**kwargs) -> None:
     pubkey_path: Path = Path(kwargs.get("identity_file"))
     port: str = str(kwargs.get("port"))
     debug: bool = kwargs.get("x")
+    dry_run: bool = kwargs.get("n")
+
     if not pubkey_path.exists():
         print(f"[!] Public key not found: {pubkey_path}")
         print("    Generate one with: ssh-keygen")
         sys.exit(1)
 
     key = pubkey_path.read_text().strip()
+    if dry_run:
+        print(key, end="")
+        return
 
     remote_cmd = (
         "mkdir -p ~/.ssh && "
@@ -91,6 +96,14 @@ def main():
         "-x",
         action="store_true",
         help="Debugging the ssh-copy-id script itself"
+    )
+
+    parser.add_argument(
+        "-n",
+        action="store_true",
+        help="""Do a dry-run.  Instead of installing keys on the remote
+               system simply prints the key(s) that would have been
+               installed""",
     )
 
     args = parser.parse_args()
