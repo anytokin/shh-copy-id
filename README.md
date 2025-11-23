@@ -1,7 +1,7 @@
 # ssh-copy-id
-![Logo](https://github.com/anytokin/shh-copy-id/blob/main/logo.ico)
+![Logo](https://github.com/anytokin/ssh-copy-id/blob/main/logo.ico)
 
-Dead simple, version of [shh-copy-id](https://www.man7.org/linux/man-pages//man1/ssh-copy-id.1.html)
+Dead simple, version of [ssh-copy-id](https://www.man7.org/linux/man-pages//man1/ssh-copy-id.1.html)
 for Windows with one line setup.
 
 Written in Python 🐍
@@ -11,12 +11,12 @@ Written in Python 🐍
 Just run:
 
 ```bash
-powershell -ExecutionPolicy ByPass -c "irm https://anytokin.github.io/shh-copy-id/install.ps1 | iex"
+powershell -ExecutionPolicy ByPass -c "irm https://anytokin.github.io/ssh-copy-id/install.ps1 | iex"
 ```
 
 or download portable version:
 
-[![Download](https://img.shields.io/badge/Download-ssh--copy--id.exe-blue?style=for-the-badge&logo=github)](https://github.com/anytokin/shh-copy-id/releases/latest/download/ssh-copy-id.exe)
+[![Download](https://img.shields.io/badge/Download-ssh--copy--id.exe-blue?style=for-the-badge&logo=github)](https://github.com/anytokin/ssh-copy-id/releases/latest/download/ssh-copy-id.exe)
 
 
 ## How to use?

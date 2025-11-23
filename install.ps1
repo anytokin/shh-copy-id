@@ -1,10 +1,10 @@
 <#
-Simple installer for shh-copy-id on Windows.
+Simple installer for ssh-copy-id on Windows.
 
 Usage (PowerShell):
 
     Set-ExecutionPolicy -Scope CurrentUser RemoteSigned -Force
-    irm https://raw.githubusercontent.com/anytokin/shh-copy-id/main/install.ps1 | iex
+    irm https://raw.githubusercontent.com/anytokin/ssh-copy-id/main/install.ps1 | iex
 
 Parameters:
     -InstallDir   Optional custom install directory
@@ -20,7 +20,7 @@ $ErrorActionPreference = "Stop"
 
 # Configuration
 $RepoOwner = "anytokin"
-$RepoName  = "shh-copy-id"
+$RepoName  = "ssh-copy-id"
 
 # GitHub API for latest release (used only for version detection)
 $GitHubApiLatestUrl = "https://api.github.com/repos/$RepoOwner/$RepoName/releases/latest"
@@ -29,7 +29,7 @@ $GitHubApiLatestUrl = "https://api.github.com/repos/$RepoOwner/$RepoName/release
 $DownloadUrl = "https://github.com/$RepoOwner/$RepoName/releases/latest/download/ssh-copy-id.exe"
 
 $AppName    = "ssh-copy-id.exe"
-$FolderName = "shh-copy-id"
+$FolderName = "ssh-copy-id"
 
 function Get-LatestGithubVersion {
     param(
@@ -37,7 +37,7 @@ function Get-LatestGithubVersion {
     )
 
     try {
-        $headers = @{ "User-Agent" = "shh-copy-id-installer" }
+        $headers = @{ "User-Agent" = "ssh-copy-id-installer" }
         $response = Invoke-RestMethod -Uri $ApiUrl -Headers $headers
 
         $tag = $response.tag_name
@@ -93,18 +93,18 @@ function Get-InstalledSshCopyIdVersion {
     return $null
 }
 
-# Default install dir: %LOCALAPPDATA%\Programs\shh-copy-id
+# Default install dir: %LOCALAPPDATA%\Programs\ssh-copy-id
 if (-not $InstallDir) {
     if ($env:LOCALAPPDATA) {
         $InstallDir = Join-Path $env:LOCALAPPDATA ("Programs\" + $FolderName)
     }
     else {
-        # Fallback: %USERPROFILE%\shh-copy-id
+        # Fallback: %USERPROFILE%\ssh-copy-id
         $InstallDir = Join-Path $env:USERPROFILE $FolderName
     }
 }
 
-Write-Host "Installing shh-copy-id to: $InstallDir" -ForegroundColor Cyan
+Write-Host "Installing ssh-copy-id to: $InstallDir" -ForegroundColor Cyan
 
 $ExePath = Join-Path $InstallDir $AppName
 
@@ -134,13 +134,13 @@ if (-not (Test-Path $InstallDir)) {
 }
 
 # Download executable
-Write-Host "Downloading latest shh-copy-id from GitHub..." -ForegroundColor Cyan
+Write-Host "Downloading latest ssh-copy-id from GitHub..." -ForegroundColor Cyan
 
 try {
     Invoke-WebRequest -Uri $DownloadUrl -OutFile $ExePath -UseBasicParsing
 }
 catch {
-    Write-Error "Failed to download shh-copy-id from $DownloadUrl"
+    Write-Error "Failed to download ssh-copy-id from $DownloadUrl"
     throw
 }
 
