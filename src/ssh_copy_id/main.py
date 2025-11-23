@@ -103,7 +103,7 @@ def main():
     parser.add_argument(
         "-n",
         action="store_true",
-        help="""Do a dry-run.  Instead of installing keys on the remote
+        help="""Do a dry-run. Instead of installing keys on the remote
                system simply prints the key(s) that would have been
                installed""",
     )
@@ -117,7 +117,7 @@ def main():
     parser.add_argument(
         "-v",
         action='store_true',
-        help="""Return shh-copy-id version"""
+        help="""Return ssh-copy-id version"""
     )
 
     args = parser.parse_args()
