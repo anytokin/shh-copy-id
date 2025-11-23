@@ -43,17 +43,18 @@ Alternatively:
 - Use with options:<br><br>
 -i &ensp;[_identity_file_]
 <br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Use only the key(s) contained in _identity_file_ (rather
-               default _~/.ssh/id_rsa.pub_)<br><br>
+               default _~/.ssh/id_rsa.pub_).<br><br>
 -n &ensp;&ensp;Do a dry-run. Instead of installing keys on the remote
                system simply prints the key(s) that would have been
                installed.<br><br>
 -t &ensp;[_target_path_]
 <br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;The path on the target system where the keys should be
-               added (defaults to "_.ssh/authorized_keys_")<br><br>
+               added (defaults to "_.ssh/authorized_keys_").<br><br>
 -p &ensp;[_port_]
 <br>&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;Specifies the port to connect to on the remote host.<br><br>
+-v &ensp;&ensp;Return ssh-copy-id version.<br><br>
 -x &ensp;&ensp;This option is for debugging the ssh-copy-id script
-               itself.<br>
+               itself.
 
 ## Help
 

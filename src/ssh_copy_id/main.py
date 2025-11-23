@@ -2,6 +2,7 @@ import argparse
 import subprocess
 import sys
 from pathlib import Path
+from version import get_version
 
 
 def parse_user_host(user_at_host: str | None) -> str:
@@ -113,8 +114,16 @@ def main():
         help="""The path on the target system where the keys should be
                added (defaults to ".ssh/authorized_keys")"""
     )
+    parser.add_argument(
+        "-v",
+        action='store_true',
+        help="""Return shh-copy-id version"""
+    )
 
     args = parser.parse_args()
+    if args.v:
+        print(get_version(),end="")
+        return
     ssh_copy_id(**args.__dict__)
 
 
