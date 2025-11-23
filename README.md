@@ -1,9 +1,10 @@
 # ssh-copy-id
+![Logo](https://github.com/anytokin/shh-copy-id/blob/main/logo.ico)
 
 Dead simple, version of [shh-copy-id](https://www.man7.org/linux/man-pages//man1/ssh-copy-id.1.html)
 for Windows with one line setup.
 
-written in Python :snake:
+Written in Python 🐍
 
 ## How to install?
 
