@@ -2,7 +2,7 @@ import argparse
 import subprocess
 import sys
 from pathlib import Path
-from version import get_version
+from ssh_copy_id.version import get_version
 
 
 def parse_user_host(user_at_host: str | None) -> str:
