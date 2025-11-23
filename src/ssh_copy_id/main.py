@@ -30,7 +30,11 @@ def parse_user_host(user_at_host: str | None) -> str:
     return f"{user}@{host}"
 
 
-def ssh_copy_id(user_at_host: str, port: int, pubkey_path: Path):
+def ssh_copy_id(**kwargs) -> None:
+    user_at_host: str = parse_user_host(kwargs.get("user_at_host"))
+    pubkey_path: Path = Path(kwargs.get("identity_file"))
+    port: str = str(kwargs.get("port"))
+    debug: bool = kwargs.get("x")
     if not pubkey_path.exists():
         print(f"[!] Public key not found: {pubkey_path}")
         print("    Generate one with: ssh-keygen")
@@ -47,8 +51,11 @@ def ssh_copy_id(user_at_host: str, port: int, pubkey_path: Path):
 
     print(f"[+] Copying key to {user_at_host} ...")
 
+    ssh_command = ["ssh", "-p", port, user_at_host, remote_cmd]
+    if debug:
+        print(f"Running: {" ".join(ssh_command)}")
     result = subprocess.run(
-        ["ssh", "-p", str(port), user_at_host, remote_cmd],
+        ssh_command,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
@@ -80,10 +87,14 @@ def main():
         default=str(Path.home() / ".ssh" / "id_rsa.pub"),
         help="Path to public key file (default: ~/.ssh/id_rsa.pub)"
     )
+    parser.add_argument(
+        "-x",
+        action="store_true",
+        help="Debugging the ssh-copy-id script itself"
+    )
 
     args = parser.parse_args()
-    user_host = parse_user_host(args.user_at_host)
-    ssh_copy_id(user_host, args.port, Path(args.identity_file))
+    ssh_copy_id(**args.__dict__)
 
 
 if __name__ == "__main__":
